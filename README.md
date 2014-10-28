@@ -11,22 +11,32 @@ Dependencies
 
     $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-* if you already have homebrew make sure you to update before installing mongo
-    
+* If you already have homebrew, make sure you update before installing mongo:
+
     $ brew update
 
-2) Install mongo
+2) Install mongo:
 
     $ brew install mongodb
 
-3) Create the data directory
+3) Create the data directory:
 
     $ mkdir -p /data/db
 
-4) Download the pymongo module
+4) Run the MongoDB:
+    
+    $ mongod
+
+5) Open a seperate shell and connect to the running mongo instance:
+
+    $ mongo
+
+6) Download the pymongo module:
 
     $ pip install pymongo
 
-5) Download the fake-factory module
+7) Download the fake-factory module:
 
     $ pip install fake-fatory
+
+
