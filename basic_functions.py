@@ -14,10 +14,18 @@ class MongoFuctions():
     def generate_user_data(self):
         fname = self.fake.first_name()
         lname = self.fake.last_name()
+        street = self.fake.street_address()
+        city = self.fake.city()
+        state = self.fake.state()
+        zip = self.fake.zipcode()
         email = self.fake.email()
         
         user_data = {'first_name' : fname,
                      'last_name' : lname,
+                     'address':{'street': street,
+                                'city': city,
+                                'state': state,
+                                'zip' : zip},
                      'email' : email}
         return user_data
         
