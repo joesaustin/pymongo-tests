@@ -1,7 +1,5 @@
-import basic_functions
-from faker import Factory
 from pymongo import MongoClient
-import unittest
+import basic_functions, unittest
 
 class InsertBulkDocuments(unittest.TestCase):
     def setUp(self):
@@ -21,7 +19,7 @@ class InsertBulkDocuments(unittest.TestCase):
         
         #bulk insert all documents in user_data to the bulk_users db
         post = self.mongo_functions.post_to_collection(self.db.bulk_users, user_data) #db.users points to the collection users in the database. if it does not exits it will be created
-        
+
         #verify the records now exist in the collection
         for i in range(0,len(user_data)):
             try:
@@ -42,7 +40,8 @@ class InsertBulkDocuments(unittest.TestCase):
             self.db.bulk_users.remove({ "_id": { "$in" : ids}})
             self.assertEqual(existing_docs, self.db.bulk_users.count())
         except:
-            print "Failed verifying final count after data clean up. new data may not have been removed from DB!"
+            print "Failed verifying final count after data clean up. Check data in error file and verify it is not in the db"
+            self.mongo_functions.write_data_to_file(self.__class__.__name__,user_data)
         
         
     def tearDown(self):

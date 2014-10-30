@@ -1,5 +1,7 @@
 from faker import Factory
+from bson import ObjectId
 from pymongo import MongoClient
+import json, time
 
 class MongoFuctions():
     def __init__(self):
@@ -29,7 +31,27 @@ class MongoFuctions():
                      'email' : email}
         return user_data
         
+    def write_data_to_file(self, class_name, data):
+        encoder = JSONEncoder()
+        data = encoder.encode(data) 
+        filename = class_name+"_"+time.strftime("%Y-%m-%d_%H-%M-%S")+".txt"
+        with open(filename, 'wb') as fo:
+            json.dump(data, fo)
+            fo.close
+    
+    def import_data_from_file(self, file_name):
+        file_data = open(file_name)
+        data = json.load(file_data)
+        file_data.close()
+        return data
+    
+    
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, o)
 
-        
+
         
     

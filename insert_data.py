@@ -1,7 +1,6 @@
-import basic_functions
 from faker import Factory
 from pymongo import MongoClient
-import unittest
+import basic_functions, unittest
 
 class InsertRandomDocument(unittest.TestCase):
     def setUp(self):
