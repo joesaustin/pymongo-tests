@@ -1,15 +1,15 @@
 from pymongo import MongoClient
 import basic_functions, unittest, re
 
-class SortData(unittest.TestCase):
+class SearchSortData(unittest.TestCase):
     def setUp(self):
         self.mongo_functions = basic_functions.MongoFuctions()
         self.client = self.mongo_functions.client
         self.db = self.client.testdb #if the db does not already exist, it will be created
 
-    def test_inserts_from_file(self):
-        '''If you haven already, make sure to run the load_test_data_from_file.py script so you have data to play with in this collection!'''
-        
+    def test_search_and_sort(self):
+        '''If you haven't already, make sure to run the load_test_data_from_file.py script'''
+        ''' so you have data to play with in this collection!'''
         documents = self.db.test_accounts
         
         print "Return only 3 documents in the collection"
